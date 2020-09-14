@@ -1,0 +1,94 @@
+﻿@using quickify_web.Controllers;
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" />
+    <meta name="author" />
+    <title>@ViewBag.Title</title>
+    <link href="~/css/styles.css" rel="stylesheet" />
+    <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet" crossorigin="anonymous" />
+    <link rel="icon" type="image/x-icon" href="assets/img/favicon.png" />
+    <script data-search-pseudo-elements defer src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/js/all.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.24.1/feather.min.js" crossorigin="anonymous"></script>
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body class="nav-fixed">
+    <nav class="topnav navbar navbar-expand shadow navbar-light bg-white" id="sidenavAccordion">
+        <a class="navbar-brand d-none d-sm-block" href="@Url.Action("Kanban","Board")">@ProyectController.Static_Name</a>
+        <button class="btn btn-icon btn-transparent-dark order-1 order-lg-0 mr-lg-2" id="sidebarToggle" href="#"><i data-feather="menu"></i></button>
+        <ul class="navbar-nav align-items-center ml-auto">
+            @if (User.Identity.IsAuthenticated)
+            {
+
+                <li class="nav-item dropdown no-caret mr-3 dropdown-user">
+                    <span class="mr-2 d-none d-lg-inline text-gray-900 medium">@User.Identity.Name</span>
+                    <a class="btn btn-icon btn-transparent-dark dropdown-toggle" id="navbarDropdownUserImage" href="javascript:void(0);" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img class="img-fluid" src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQ95GrFuesVVuyyfXOSimzstFtyiQ594yP-DNe0UfbUs_kyqqrM&usqp=CAU" /></a>
+                    <div class="dropdown-menu dropdown-menu-right border-0 shadow animated--fade-in-up" aria-labelledby="navbarDropdownUserImage">
+
+                        <a class="dropdown-item" href='@Url.Action("Index", "Proyect")'><div class="dropdown-item-icon"><i data-feather="home"></i></div>Proyectos</a>
+                        <a class="dropdown-item" href='@Url.Action("Logout", "Auth")'><div class="dropdown-item-icon"><i data-feather="log-out"></i></div>Logout</a>
+                    </div>
+                </li>
+            }
+        </ul>
+    </nav>
+    <div id="layoutSidenav">
+        <div id="layoutSidenav_nav">
+            <nav class="sidenav shadow-right sidenav-light">
+                <div class="sidenav-menu">
+                    <div class="nav accordion" id="accordionSidenav">
+
+                        <div class="sidenav-menu-heading">Opciones</div>
+                        <a class="nav-link active" href="@Url.Action("Index","Backlog")">
+                            <div class="nav-link-icon"><i data-feather="archive"></i></div>
+                            Backlog
+                        </a>
+                        <a class="nav-link active" href="@Url.Action("Index","Tasks")">
+                            <div class="nav-link-icon"><i data-feather="inbox"></i></div>
+                            Sprints
+                        </a>
+                        <a class="nav-link active" href="@Url.Action("Index","Tasks")">
+                            <div class="nav-link-icon"><i data-feather="layers"></i></div>
+                            Tareas
+                        </a>
+                        <a class="nav-link active" href="@Url.Action("Kanban","Board")">
+                            <div class="nav-link-icon"><i data-feather="trello"></i></div>
+                            Tablero
+                        </a>
+                        <a class="nav-link active" href="@Url.Action("Index","Home")">
+                            <div class="nav-link-icon"><i data-feather="users"></i></div>
+                            Equipo
+                        </a>
+                    </div>
+                </div>
+                <div class="sidenav-footer">
+                    <div class="sidenav-footer-content">
+                        <div class="sidenav-footer-subtitle">Logged in as:</div>
+                        <div class="sidenav-footer-title">@User.Identity.Name</div>
+                    </div>
+                </div>
+            </nav>
+        </div>
+        <div id="layoutSidenav_content">
+            <main>
+                @RenderBody()
+            </main>
+
+        </div>
+    </div>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+    <script src="~/js/scripts.js"></script>
+    <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script>
+    <script src="~/assets/demo/datatables-demo.js"></script>
+    <script src="~/js/sb-customizer.js"></script>
+</body>
+</html>
